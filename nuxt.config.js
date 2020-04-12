@@ -9,7 +9,12 @@ module.exports = {
       {hid: 'description', name: 'description', content: 'Радио Про'}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Material+Icons"
+      }
     ],
     script: [{
     }]
@@ -43,7 +48,7 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   axios: {
-    baseURL:"https://radio-nuxt.herokuapp.com/"
+    // baseURL:"https://radio-nuxt.herokuapp.com/"
   },
   plugins: [
     // '~/plugins/vuetify.js'

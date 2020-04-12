@@ -6,15 +6,13 @@
               large
               @click="playTrack(selectedTrack)"
               color="white"
-      >play_arrow
-      </v-icon>
+      >play_arrow</v-icon>
       <v-icon v-else
               @click="stopTrack(selectedTrack)"
               id="pausetop"
               large
               color="white"
-      >pause
-      </v-icon>
+      >pause</v-icon>
       <v-slider
         class="hidden-xs-only"
         v-model="volume"

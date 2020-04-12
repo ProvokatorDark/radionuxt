@@ -1,0 +1,116 @@
+<template>
+  <div id="inforadio" class="valign-wrapper">
+    <div class="controlsplay">
+      <v-icon v-if="!playing"
+              id="playtop"
+              large
+              @click="playTrack(selectedTrack)"
+              color="white"
+      >play_arrow
+      </v-icon>
+      <v-icon v-else
+              @click="stopTrack(selectedTrack)"
+              id="pausetop"
+              large
+              color="white"
+      >pause
+      </v-icon>
+      <v-slider
+        class="hidden-xs-only"
+        v-model="volume"
+        @input="updateVolume(volume)"
+        thumb-color="purple"
+        track-color="white"
+        color="white"
+        max="1"
+        step="0.1"
+      ></v-slider>
+    </div>
+    <v-avatar>
+      <img
+        :src="cover"
+      >
+    </v-avatar>
+    <span>{{title}}</span>
+
+  </div>
+</template>
+
+<script>
+  import {mapGetters, mapState} from 'vuex'
+  export default {
+    name: "CardInfoPanel",
+    data: () => ({
+      volume: 0.5,
+    }),
+    props: [
+
+    ],
+    methods: {
+      playTrack(selectedTrack) {
+        this.$emit('playtrack', selectedTrack)
+      },
+      stopTrack(selectedTrack) {
+        this.$emit('stoptrack', selectedTrack)
+      },
+      updateVolume(volume) {
+        Howler.volume(volume)
+      },
+    },
+    computed: {
+      ...mapState([
+        'statecards',
+      ]),
+      ...mapGetters({
+        selectedTrack: 'getselectedTrack',
+        getcover:'getcover',
+
+      }),
+      selectedTrack(){
+        return this.$store.getters.getselectedTrack
+      },
+      cover(){
+        return this.$store.getters.getcover
+      },
+      title(){
+        return this.$store.getters.gettitle
+      },
+      playing(){
+        return this.$store.getters.getplaying
+      }
+    }
+  }
+</script>
+
+<style>
+  #inforadio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  #inforadio>span{
+    margin-left: 10px;
+  }
+  #inforadio>.v-avatar{
+    margin-left: 10px;
+  }
+  .controlsplay {
+    color: white;
+    display: flex;
+  }
+
+
+  #inforadio span {
+    color: white;
+  }
+
+  .v-slider--horizontal {
+    margin-top: 10px;
+    min-width: 150px;
+  }
+
+  .v-messages {
+    display: none;
+  }
+</style>

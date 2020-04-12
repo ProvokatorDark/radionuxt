@@ -1,0 +1,14 @@
+{"items": [
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/news-1.jpg", "text": "Новости","ref": "news"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/pop.jpg", "text": "Поп","ref": "pop"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/chillaut.png", "text": "Чиллаут","ref": "chillout"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/club-1.jpg", "text": "Клубная","ref": "club"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/classic.png", "text": "Классическая музыка","ref": "classic"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/rap.jpg", "text": "Рэп","ref": "rap"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/145635.png", "text": "Рок","ref": "rock"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/retro.jpg", "text": "Рэтро","ref": "retro"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/jazz.png", "text": "Джаз","ref": "jazz"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2018/09/34b3a770.png", "text": "Детские","ref": "childrens"},
+{"picture": "http://radio-online.pro/wp-content/uploads/2019/04/thumb_Golden_Sunset-wallpaper-10366670.jpg", "text": "Фоновая музыка","ref": "background"}
+]
+}

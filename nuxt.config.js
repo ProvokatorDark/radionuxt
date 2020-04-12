@@ -43,7 +43,7 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    baseURL:"https://radio-nuxt.herokuapp.com/"
   },
   plugins: [
     // '~/plugins/vuetify.js'

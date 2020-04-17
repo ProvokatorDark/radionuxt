@@ -27,8 +27,10 @@
     <v-avatar>
       <img
         :src="cover"
+        @click="mark"
       >
     </v-avatar>
+    <span>{{timer}}</span>
     <span>{{title}}</span>
 
   </div>
@@ -54,6 +56,10 @@
       updateVolume(volume) {
         Howler.volume(volume)
       },
+      mark(){
+        this.$store.commit('SET_TIMER',this.$store.getters.gettimer+10)
+        console.log(this.$store.getters.gettimer)
+      }
     },
     computed: {
       ...mapState([
@@ -75,6 +81,9 @@
       },
       playing(){
         return this.$store.getters.getplaying
+      },
+      timer(){
+        return (this.$store.getters.gettimer)
       }
     }
   }

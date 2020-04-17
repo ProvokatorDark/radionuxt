@@ -16,7 +16,8 @@ const store = () => new Vuex.Store({
     playing: false,
     lasttrack: null,
     song:0,
-    theme:true
+    theme:true,
+    timer:false
 
   },
   getters: {
@@ -43,6 +44,9 @@ const store = () => new Vuex.Store({
     },
     gettheme:state => {
       return state.theme
+    },
+    gettimer:state => {
+      return state.timer
     }
 
   },
@@ -138,6 +142,9 @@ const store = () => new Vuex.Store({
     },
     SET_THEME(state,boolean){
       state.theme = boolean
+    },
+    SET_TIMER(state,timer){
+      state.timer=timer
     }
   },
   actions: {

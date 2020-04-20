@@ -28,12 +28,12 @@
     </div>
     <div class="provoavatar">
       <v-avatar
+        @click="mark"
         color="indigo">
         <span class="timer" v-if="tombo">{{tminutes}}:{{tseconds}}</span>
         <span class="timer" v-else-if="timestop">{{Math.floor(((this.timestop*1000) % (1000 * 60 * 60)) / (1000 * 60))}}</span>
         <img v-else
           :src="cover"
-          @click="mark"
         >
 
       </v-avatar>

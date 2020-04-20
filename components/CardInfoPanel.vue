@@ -26,14 +26,16 @@
         step="0.1"
       ></v-slider>
     </div>
-    <v-avatar>
-      <img
-        :src="cover"
-        @click="mark"
-      >
-    </v-avatar>
-    <span v-if="tombo">{{tminutes}}:{{tseconds}}</span>
-    <span v-else-if="timestop">{{Math.floor(((this.timestop*1000) % (1000 * 60 * 60)) / (1000 * 60))}}</span>
+    <div class="provoavatar">
+      <v-avatar >
+        <img
+          :src="cover"
+          @click="mark"
+        >
+      </v-avatar>
+      <span class="timer" v-if="tombo">{{tminutes}}:{{tseconds}}</span>
+      <span class="timer" v-else-if="timestop">{{Math.floor(((this.timestop*1000) % (1000 * 60 * 60)) / (1000 * 60))}}</span>
+    </div>
     <span>{{title}}</span>
 
   </div>
@@ -167,5 +169,13 @@
 
   .v-messages {
     display: none;
+  }
+  .provoavatar{
+    position: relative;
+  }
+  .timer{
+    position: absolute;
+    left: 3px;
+    top: 11px;
   }
 </style>

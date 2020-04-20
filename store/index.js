@@ -17,7 +17,8 @@ const store = () => new Vuex.Store({
     lasttrack: null,
     song:0,
     theme:true,
-    timer:false
+    timestop:false,
+    tombo:false
 
   },
   getters: {
@@ -45,8 +46,11 @@ const store = () => new Vuex.Store({
     gettheme:state => {
       return state.theme
     },
-    gettimer:state => {
-      return state.timer
+    gettimestop:state => {
+      return state.timestop
+    },
+    gettombo:state => {
+      return state.tombo
     }
 
   },
@@ -143,8 +147,11 @@ const store = () => new Vuex.Store({
     SET_THEME(state,boolean){
       state.theme = boolean
     },
-    SET_TIMER(state,timer){
-      state.timer=timer
+    SET_TIMESTOP(state,time){
+      state.timestop=time
+    },
+    SET_TOMBO(state,bool){
+      state.tombo=bool
     }
   },
   actions: {
@@ -164,6 +171,12 @@ const store = () => new Vuex.Store({
         .then(headings => {
           commit('SET_HEADINGS', headings)
         })
+    },
+    loadTimer ({commit},time) {
+      commit('SET_TIMESTOP',time)
+      setTimeout(() => {
+        commit('SET_TOMBO',true)
+      }, 2000)
     }
   }
 })

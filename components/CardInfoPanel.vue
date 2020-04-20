@@ -6,13 +6,15 @@
               large
               @click="playTrack(selectedTrack)"
               color="white"
-      >play_arrow</v-icon>
+      >play_arrow
+      </v-icon>
       <v-icon v-else
               @click="stopTrack(selectedTrack)"
               id="pausetop"
               large
               color="white"
-      >pause</v-icon>
+      >pause
+      </v-icon>
       <v-slider
         class="hidden-xs-only"
         v-model="volume"
@@ -30,7 +32,8 @@
         @click="mark"
       >
     </v-avatar>
-    <span>{{timer}}</span>
+    <span v-if="tombo">{{tminutes}}:{{tseconds}}</span>
+    <span v-else-if="timestop">{{Math.floor(((this.timestop*1000) % (1000 * 60 * 60)) / (1000 * 60))}}</span>
     <span>{{title}}</span>
 
   </div>
@@ -38,14 +41,15 @@
 
 <script>
   import {mapGetters, mapState} from 'vuex'
+
   export default {
     name: "CardInfoPanel",
     data: () => ({
       volume: 0.5,
+      timer: null,
+      currentTime: false,
     }),
-    props: [
-
-    ],
+    props: [],
     methods: {
       playTrack(selectedTrack) {
         this.$emit('playtrack', selectedTrack)
@@ -56,10 +60,23 @@
       updateVolume(volume) {
         Howler.volume(volume)
       },
-      mark(){
-        this.$store.commit('SET_TIMER',this.$store.getters.gettimer+10)
-        console.log(this.$store.getters.gettimer)
-      }
+      mark() {
+        this.$store.dispatch('loadTimer', this.$store.getters.gettimestop + 900)
+        console.log(this.$store.getters.gettimestop)
+      },
+      startTimer() {
+        this.currentTime = this.$store.getters.gettimestop
+        console.log(this.currentTime)
+        this.timer = setInterval(() => {
+          console.log('currentTime' + this.currentTime)
+          this.currentTime--
+        }, 1000)
+      },
+      stopTimer() {
+        clearTimeout(this.timer)
+        this.$store.commit('SET_TIMESTOP', false)
+        this.$store.commit('SET_TOMBO',false)
+      },
     },
     computed: {
       ...mapState([
@@ -67,23 +84,51 @@
       ]),
       ...mapGetters({
         selectedTrack: 'getselectedTrack',
-        getcover:'getcover',
+        getcover: 'getcover',
 
       }),
-      selectedTrack(){
+      selectedTrack() {
         return this.$store.getters.getselectedTrack
       },
-      cover(){
+      cover() {
         return this.$store.getters.getcover
       },
-      title(){
+      title() {
         return this.$store.getters.gettitle
       },
-      playing(){
+      playing() {
         return this.$store.getters.getplaying
       },
-      timer(){
-        return (this.$store.getters.gettimer)
+      timestop() {
+        return (this.$store.getters.gettimestop)
+      },
+      tombo() {
+        return this.$store.getters.gettombo
+      },
+      thours(){
+        return Math.floor(((this.currentTime*1000) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      },
+      tminutes(){
+        return Math.floor(((this.currentTime*1000) % (1000 * 60 * 60)) / (1000 * 60))
+      },
+      tseconds(){
+        return Math.floor(((this.currentTime*1000) % (1000 * 60)) / 1000)
+
+      }
+    },
+    watch: {
+      currentTime(time, selectedTrack) {
+        if (time === 0) {
+          this.stopTimer()
+          console.log('Timer stopped')
+          this.stopTrack(selectedTrack)
+          this.currentTime = false;
+        }
+      },
+      tombo(bool) {
+        if (bool === true) {
+          this.startTimer();
+        }
       }
     }
   }
@@ -96,12 +141,15 @@
     justify-content: center;
 
   }
-  #inforadio>span{
+
+  #inforadio > span {
     margin-left: 10px;
   }
-  #inforadio>.v-avatar{
+
+  #inforadio > .v-avatar {
     margin-left: 10px;
   }
+
   .controlsplay {
     color: white;
     display: flex;

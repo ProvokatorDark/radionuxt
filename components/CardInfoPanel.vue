@@ -61,6 +61,7 @@
       },
       stopTrack(selectedTrack) {
         this.$emit('stoptrack', selectedTrack)
+        this.stopTimer()
       },
       updateVolume(volume) {
         Howler.volume(volume)

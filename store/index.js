@@ -176,7 +176,7 @@ const store = () => new Vuex.Store({
       commit('SET_TIMESTOP',time)
       setTimeout(() => {
         commit('SET_TOMBO',true)
-      }, 2000)
+      }, 4000)
     }
   }
 })

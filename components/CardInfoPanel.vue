@@ -67,7 +67,9 @@
         Howler.volume(volume)
       },
       mark() {
-        this.$store.dispatch('loadTimer', this.$store.getters.gettimestop + 900)
+        if (this.$store.getters.getplaying){
+          this.$store.dispatch('loadTimer', this.$store.getters.gettimestop + 900)
+        }
         console.log(this.$store.getters.gettimestop)
       },
       startTimer() {
@@ -133,7 +135,7 @@
       },
       tombo(bool) {
         if (bool === true) {
-          this.startTimer();
+            this.startTimer();
         }
       }
     }

@@ -68,7 +68,9 @@
       },
       mark() {
         if (this.$store.getters.getplaying){
-          this.$store.dispatch('loadTimer', this.$store.getters.gettimestop + 900)
+          let m = this.$store.getters.gettimestop+900
+          if (m>3599){m=3599}
+          this.$store.dispatch('loadTimer', m)
         }
         console.log(this.$store.getters.gettimestop)
       },

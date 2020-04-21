@@ -21,8 +21,6 @@
         </v-card-text>
         </v-container>
       </v-card>
-
-
   </v-footer>
 </template>
 

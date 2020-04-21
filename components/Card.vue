@@ -14,7 +14,6 @@
       >
         <v-card
           hover
-          ripple
           @click="playtrack(index)"
           shaped
           :class="{ active: card.plays,selected:index===selectedTrack }"
@@ -94,6 +93,9 @@
   }
   .active.theme--light  .bottom-card{
     background-color: #292527;
+  }
+  .row .v-card{
+    border-radius: 24px 4px;
   }
 
 

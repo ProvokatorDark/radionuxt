@@ -18,7 +18,8 @@ const store = () => new Vuex.Store({
     song:0,
     theme:true,
     timestop:false,
-    tombo:false
+    tombo:false,
+    timer: null,
 
   },
   getters: {
@@ -51,6 +52,9 @@ const store = () => new Vuex.Store({
     },
     gettombo:state => {
       return state.tombo
+    },
+    gettimer:state => {
+      return state.timer
     }
 
   },
@@ -152,6 +156,9 @@ const store = () => new Vuex.Store({
     },
     SET_TOMBO(state,bool){
       state.tombo=bool
+    },
+    SET_TIMER(state,timer){
+      state.timer=timer
     }
   },
   actions: {

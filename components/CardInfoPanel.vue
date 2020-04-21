@@ -51,7 +51,7 @@
     name: "CardInfoPanel",
     data: () => ({
       volume: 0.5,
-      timer: null,
+
       currentTime: false,
     }),
     props: [],
@@ -73,13 +73,13 @@
       startTimer() {
         this.currentTime = this.$store.getters.gettimestop
         console.log(this.currentTime)
-        this.timer = setInterval(() => {
+        this.$store.commit('SET_TIMER',setInterval(() => {
           console.log('currentTime' + this.currentTime)
           this.currentTime--
-        }, 1000)
+        }, 1000))
       },
       stopTimer() {
-        clearTimeout(this.timer)
+        clearTimeout(this.$store.getters.gettimer)
         this.$store.commit('SET_TIMESTOP', false)
         this.$store.commit('SET_TOMBO',false)
       },

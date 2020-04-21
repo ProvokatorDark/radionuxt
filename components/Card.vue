@@ -27,7 +27,7 @@
           </v-img>
           <div
             class="bottom-card"
-                    >
+          >
             <v-card-text v-text="card.album"></v-card-text>
           </div>
         </v-card>
@@ -37,25 +37,25 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
+
   export default {
-    data: () => ({
-    }),
+    data: () => ({}),
     methods: {
       playtrack(index) {
+        if (this.$store.getters.getplaying) {
+          clearTimeout(this.$store.getters.gettimer)
+          this.$store.commit('SET_TIMESTOP', false)
+          this.$store.commit('SET_TOMBO',false)
+        }
         this.$emit('playtrack', index)
-        },
-      stoptrack(index){
-        this.$emit('stoptrack',index)
       }
     },
-    props:[
-
-    ],
-    mounted: function() {
+    props: [],
+    mounted: function () {
 
     },
-    computed:{
+    computed: {
       ...mapState([
         'statecards',
       ]),
@@ -78,23 +78,29 @@
     justify-content: center;
     align-items: center;
   }
-  .selected.theme--dark .v-card__text{
+
+  .selected.theme--dark .v-card__text {
     color: #ffffd2;
   }
-  .selected.theme--light .v-card__text{
+
+  .selected.theme--light .v-card__text {
     color: #1829af;
   }
-  .selected.active.theme--light .v-card__text{
+
+  .selected.active.theme--light .v-card__text {
     color: #ffffff;
   }
-  .active.theme--dark  .bottom-card{
+
+  .active.theme--dark .bottom-card {
     background-color: #292527;
     border-bottom: #ffffd2 1px solid;
   }
-  .active.theme--light  .bottom-card{
+
+  .active.theme--light .bottom-card {
     background-color: #292527;
   }
-  .row .v-card{
+
+  .row .v-card {
     border-radius: 24px 4px;
   }
 

@@ -35,23 +35,18 @@
         <img v-else
           :src="cover"
         >
-
       </v-avatar>
-
     </div>
     <span>{{title}}</span>
-
   </div>
 </template>
 
 <script>
   import {mapGetters, mapState} from 'vuex'
-
   export default {
     name: "CardInfoPanel",
     data: () => ({
       volume: 0.5,
-
       currentTime: false,
     }),
     props: [],
@@ -123,7 +118,6 @@
       },
       tseconds(){
         return Math.floor(((this.currentTime*1000) % (1000 * 60)) / 1000)
-
       }
     },
     watch: {

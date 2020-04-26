@@ -8,10 +8,10 @@ export const playmix = {
   methods: {
     play(index) {
       let track = this.statecards[index].howl;
-
       if (this.song != index) {
         this.statecards[this.song].howl.unload()
         this.statecards[this.song].plays=false
+        this.$store.commit('SET_PLAYING', false)
       }
       if (track.playing()) {
         this.statecards[index].howl.unload()
@@ -37,6 +37,7 @@ export const playmix = {
       if (this.lasttrack) {
         this.lasttrack.unload()
         this.lasttrack.plays=false
+        this.$store.commit('SET_PLAYING', false)
       }
       this.statecards[index].howl.unload()
       this.statecards[index].plays=false
